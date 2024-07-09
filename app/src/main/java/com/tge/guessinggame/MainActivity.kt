@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.tge.guessinggame.theme.GuessingGameTheme
 
 class MainActivity : ComponentActivity() {
     private val networkReceiver = NetworkReceiver()
@@ -47,12 +48,12 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-
-            MaterialTheme {
+            GuessingGameTheme {
                 Surface(
                     Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight()) {
+                        .fillMaxHeight()
+                ) {
                     AlertNoInternet()
                     MainActivityContent()
                 }
@@ -100,10 +101,13 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     title = {
-                        Text(text = "No internet connection")
+                        Text(text = "No internet connection", color = MaterialTheme.colors.primary)
                     },
                     text = {
-                        Text(text = "The game requires internet to load words and hints.")
+                        Text(
+                            text = "The game requires internet to load words and hints.",
+                            color = MaterialTheme.colors.primary
+                        )
                     },
                     onDismissRequest = {
                         openAlertDialog.value = false
